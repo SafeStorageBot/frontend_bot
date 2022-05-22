@@ -1,0 +1,25 @@
+section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.list {
+    max-height: 80%;
+    overflow-y: scroll;
+}
+.info {
+    margin-top: 5px;
+    text-align: center;
+    width: 100%;
+}
+.error {
+    margin-top: 40px;
+    text-align: center;
+    width: 100%;
+}
+.loading {
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

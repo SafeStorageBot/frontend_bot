@@ -1,0 +1,10 @@
+section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.list {
+    max-height: 80%;
+    overflow-y: scroll;
+}

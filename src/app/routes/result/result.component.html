@@ -1,0 +1,13 @@
+<section>
+    <button mat-stroked-button (click)="goHome()">Home</button>
+</section>
+<div class="list">
+    <mat-list>
+        <mat-list-item *ngFor="let item of items" [disabled]="item.error">
+            <h2 matLine>{{item.title}}</h2>
+            <div mat-line *ngIf="item.error">Error: invalid master-key for this password</div>
+            <div matLine *ngIf="!item.error">Password: {{ item.password! }}</div>
+            <button *ngIf="!item.error" mat-stroked-button (click)="select(item)">Copy</button>
+        </mat-list-item>
+    </mat-list>
+</div>

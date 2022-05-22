@@ -1,0 +1,20 @@
+<div class="verify-form" [formGroup]="form">
+    <mat-form-field appearance="fill">
+        <mat-label>Enter title</mat-label>
+        <input matInput formControlName="title" autocomplete="off">
+        <mat-error *ngIf="form.get('title')!.invalid">It is required and max length max is 40</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="form.get('password')!.invalid">Min length 4 symbols and max is 100</mat-error>
+    </mat-form-field>
+    <section>
+        <button mat-flat-button color="primary" (click)="add()">Add</button>
+        <button mat-stroked-button (click)="goHome()">Back</button>
+    </section>
+</div>
