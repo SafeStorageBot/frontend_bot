@@ -22,7 +22,7 @@ export function getTelegramData() {
 export function getDefaultLang(): string {
     const data = getTelegramData()
     try {
-        const user = JSON.parse(data["user"])
+        const user = JSON.parse(decodeURIComponent(data["user"]))
         const lang = user["language_code"] 
         return lang === 'ru' ? 'ru' : 'en'
     } catch (_) {
