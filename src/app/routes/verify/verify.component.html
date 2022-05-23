@@ -1,15 +1,15 @@
 <div class="verify-form" [formGroup]="form">
         <mat-form-field appearance="fill">
-            <mat-label>Enter your master-key</mat-label>
+            <mat-label>{{ 'ENTER_MASTER_KEY'| translate }}</mat-label>
             <input matInput formControlName="key" [type]="hide ? 'password' : 'text'">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                 [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            <mat-error *ngIf="form.get('key')!.invalid">Min length 4 symbols</mat-error>
+            <mat-error *ngIf="form.get('key')!.invalid">{{ 'MIN_LENGTH_4'| translate }}</mat-error>
         </mat-form-field>
         <section>
-            <button mat-flat-button color="primary" (click)="verify()" [disabled]="!edit">Verify</button>
-            <button mat-stroked-button (click)="goHome()">Home</button>
+            <button mat-flat-button color="primary" (click)="verify()" [disabled]="!edit">{{ 'VERIFY'| translate }}</button>
+            <button mat-stroked-button (click)="goHome()">{{ 'HOME'| translate }}</button>
         </section>
 </div>

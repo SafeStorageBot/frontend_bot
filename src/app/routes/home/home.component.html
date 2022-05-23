@@ -2,30 +2,30 @@
     <ng-container *ngIf="!userInfoReponse.error else userInfoError">
         <section>
             <button mat-flat-button color="primary" [disabled]="!userInfoReponse.response.until && userInfoReponse.response.passwords >= userInfoReponse.response.limit"
-                (click)="add()">Add</button>
-            <button mat-flat-button [disabled]="isEmpty" color="primary" (click)="show()">Reveal</button>
-            <button mat-flat-button [disabled]="isEmpty" color="primary" (click)="remove()">Remove</button>
+                (click)="add()">{{ 'ADD'| translate }}</button>
+            <button mat-flat-button [disabled]="isEmpty" color="primary" (click)="show()">{{ 'REVEAL'| translate }}</button>
+            <button mat-flat-button [disabled]="isEmpty" color="primary" (click)="remove()">{{ 'REMOVE'| translate }}</button>
         </section>
 
         <div class="info">
             <ng-container *ngIf="!userInfoReponse.response.until else unlimited">
-                <h3 class="mat-h3">Limited version. Maximum you can store {{ userInfoReponse.response.limit }} passwords</h3>
+                <h3 class="mat-h3">{{ 'LIMITED_VERSION_INFO'| translate }} {{ userInfoReponse.response.limit }} {{ 'LIMITED_VERSION_INFO_PASSWORDS'| translate }}</h3>
             </ng-container>
             <ng-template #unlimited>
-                <h3 class="mat-h3">Unlimited version until: {{ userInfoReponse.response.until }}</h3>
+                <h3 class="mat-h3">{{ 'UNLIMITED_VERSION_INFO'| translate }}: {{ userInfoReponse.response.until }}</h3>
             </ng-template>
         </div>
 
         <div *ngIf="list$ | async as resp; else loading" class="list">
             <div *ngIf="resp.error else content" class="error">
-                <h2>Error happens during request</h2>
-                <p>Probaly you was click reload page btn</p>
+                <h2>{{ 'ERR_TITLE'| translate }}</h2>
+                <p>{{ 'ERR_DESC'| translate }}</p>
             </div>
 
             <ng-template #content>
                 <mat-selection-list #items (selectionChange)="OnSelectionChange(items.selectedOptions.selected)">
-                    <h3 matSubheader>List of passwords {{ resp.response && resp.response.length || 0}}/{{ userInfoReponse.response.until ? '9999999+' : userInfoReponse.response.limit}}</h3>
-                    <h4 *ngIf="resp.response && resp.response.length == 0">You can add password via button</h4>
+                    <h3 matSubheader>{{ 'LIST_INFO'| translate }} {{ resp.response && resp.response.length || 0}}/{{ userInfoReponse.response.until ? '9999999+' : userInfoReponse.response.limit}}</h3>
+                    <h4 *ngIf="resp.response && resp.response.length == 0">{{ 'LIST_INFO_TIP'| translate }}</h4>
                     <mat-list-option *ngFor="let item of resp.response" [value]="item">
                         {{item.title}}
                     </mat-list-option>
@@ -42,8 +42,8 @@
 
     <ng-template #userInfoError>
         <div class="error">
-            <h2>Error happens during request</h2>
-            <p>Probaly you was click reload page btn</p>
+            <h2>{{ 'ERR_TITLE'| translate }}</h2>
+            <p>{{ 'ERR_DESC'| translate }}</p>
         </div>
 
     </ng-template>

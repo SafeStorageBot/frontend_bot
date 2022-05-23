@@ -12,11 +12,22 @@ export function getRawTelegramData() {
 }
 
 export function getTelegramData() {
-    return telegram.WebApp.initData.split("&").reduce((prev, current) => {
+    return getRawTelegramData().split("&").reduce((prev, current) => {
         const [key, value] = current.split("=", 2)
         prev[key] = value
         return prev
     }, {} as {[key: string]: string})
+}
+
+export function getDefaultLang(): string {
+    const data = getTelegramData()
+    try {
+        const user = JSON.parse(data["user"])
+        const lang = user["language_code"] 
+        return lang === 'ru' ? 'ru' : 'en'
+    } catch (_) {
+        return 'en'
+    }
 }
 
 
