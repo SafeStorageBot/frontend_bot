@@ -16,7 +16,7 @@
     "LIST_INFO": "List of passwords",
     "LIST_INFO_TIP": "You can add password via button",
     "ENTER_TITLE": "Enter title",
-    "TITLE_VALIDATION": "It is required and max length max is 40",
+    "TITLE_VALIDATION": "Required and max length max is 40",
     "ENTER_PASSWORD": "Enter your password",
     "PASSWORD_VALIDATION": "Min length 4 symbols and max is 100",
     "MASTER_KEY_ERROR": "Error: invalid master-key for this password",
