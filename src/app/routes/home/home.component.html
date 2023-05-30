@@ -12,7 +12,7 @@
                 <h3 class="mat-h3">{{ 'LIMITED_VERSION_INFO'| translate }} {{ userInfoReponse.response.limit }} {{ 'LIMITED_VERSION_INFO_PASSWORDS'| translate }}</h3>
             </ng-container>
             <ng-template #unlimited>
-                <h3 class="mat-h3">{{ 'UNLIMITED_VERSION_INFO' | translate }}: {{ userInfoReponse.response.until }}</h3>
+                <h3 class="mat-h3">{{ 'UNLIMITED_VERSION_INFO' | translate }}: {{ userInfoReponse.response.until | date: 'dd/MM/yyyy hh:mm:ss' }}</h3>
             </ng-template>
         </div>
 
