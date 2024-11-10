@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
-import { MatListOption } from "@angular/material/list";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatLegacyListOption as MatListOption } from "@angular/material/legacy-list";
+import { MatLegacySnackBar as MatSnackBar } from "@angular/material/legacy-snack-bar";
 import { Router } from "@angular/router";
 import { DecryptedPasswordItem, ResultState } from "src/app/interfaces/item";
 

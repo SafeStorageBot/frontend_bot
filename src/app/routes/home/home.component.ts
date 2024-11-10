@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
-import { MatListOption } from '@angular/material/list';
+import { MatLegacyListOption as MatListOption } from '@angular/material/legacy-list';
 import { Router } from '@angular/router';
 import { BehaviorSubject, combineLatest, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { PasswordItem, VerifyState, VerifyStates } from 'src/app/interfaces/item';
