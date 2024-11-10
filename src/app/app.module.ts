@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from"@angular/common/http"
+import { HttpClient, HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from"@angular/common/http"
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -28,45 +28,39 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    AddComponent,
-    ResultComponent,
-    VerifyComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    CommonModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatListModule,
-    MatCardModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatSnackBarModule,
-    MatProgressSpinnerModule,
-    TranslateModule.forRoot({
-      defaultLanguage: getDefaultLang(),
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-    }),
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorCatchingInterceptor,
-      multi: true
-  }
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HomeComponent,
+        AddComponent,
+        ResultComponent,
+        VerifyComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        CommonModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatListModule,
+        MatCardModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatSnackBarModule,
+        MatProgressSpinnerModule,
+        TranslateModule.forRoot({
+            defaultLanguage: getDefaultLang(),
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient],
+            },
+        })], providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorCatchingInterceptor,
+            multi: true
+        },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }
