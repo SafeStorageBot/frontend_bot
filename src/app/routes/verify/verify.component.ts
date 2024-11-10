@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, OnDestroy } from "@angular/core";
 import { UntypedFormBuilder, Validators } from "@angular/forms";
-import { MatLegacySnackBar as MatSnackBar } from "@angular/material/legacy-snack-bar";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { combineLatest, map, Subject, switchMap, takeUntil } from "rxjs";
 import { BotHttpResponse } from "src/app/interfaces/http";
