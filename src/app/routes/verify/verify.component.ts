@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnDestroy } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormBuilder, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { combineLatest, map, Subject, switchMap, takeUntil } from "rxjs";
@@ -26,7 +26,7 @@ export class VerifyComponent implements OnDestroy {
 
     destroyed$ = new Subject<void>();
 
-    constructor(private router: Router, private fb: FormBuilder, private verifyService: VerifyService, private listService: ListService, private _snackBar: MatSnackBar) {
+    constructor(private router: Router, private fb: UntypedFormBuilder, private verifyService: VerifyService, private listService: ListService, private _snackBar: MatSnackBar) {
         const navigation = this.router.getCurrentNavigation();
         if (!navigation) { return }
         const state = navigation.extras.state as VerifyState;

@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { VerifyStates, VerifyState } from "src/app/interfaces/item";
 
@@ -16,7 +16,7 @@ export class AddComponent {
         icon: [''],
     })
     hide = true;
-    constructor(private fb: FormBuilder, private router: Router) {}
+    constructor(private fb: UntypedFormBuilder, private router: Router) {}
 
     add() {
         if(!this.form.valid){
