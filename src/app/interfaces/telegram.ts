@@ -2,6 +2,7 @@ export interface WebApp {
   initData: string;
   expand(): () => void;
   ready(): () => void;
+  disableVerticalSwipes(): () => void;
 }
 export interface Telegram {
   WebApp: WebApp;
@@ -13,8 +14,9 @@ export function getRawTelegramData() {
 }
 
 export function ready() {
-  telegram.WebApp.expand()
-  telegram.WebApp.ready()
+  telegram.WebApp.expand();
+  telegram.WebApp.ready();
+  telegram.WebApp.disableVerticalSwipes();
 }
 
 export function getTelegramData() {
