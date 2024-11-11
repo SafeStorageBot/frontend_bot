@@ -3,9 +3,9 @@ import { Injectable } from "@angular/core";
 import { defer, delay, finalize, Observable, of, Subject, switchMap } from "rxjs";
 import { BotHttpResponse } from "../interfaces/http";
 import { PasswordItem, UserInfo } from "../interfaces/item";
-import { getRawTelegramData } from "../interfaces/telegram";
+import { getRawTelegramData, ready } from "../interfaces/telegram";
 
-  
+
 @Injectable({
     providedIn: 'root',
 })
@@ -15,7 +15,9 @@ export class HttpService {
         Authorization: getRawTelegramData(),
     })
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient) {
+        ready()
+     }
 
     getUserInfo() {
         return this.httpClient.get<BotHttpResponse<UserInfo>>("/api/info", {

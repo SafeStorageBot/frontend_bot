@@ -4,10 +4,10 @@
 <div class="list">
     <mat-list>
         <mat-list-item *ngFor="let item of items" [disabled]="item.error">
-            <h2 matLine>{{item.title}}</h2>
-            <div mat-line *ngIf="item.error">{{ 'MASTER_KEY_ERROR'| translate }}</div>
-            <div matLine *ngIf="!item.error">{{ 'PASSWORD'| translate }}: {{ item.password! }}</div>
-            <button *ngIf="!item.error" mat-stroked-button (click)="select(item)">{{ 'COPY'| translate }}</button>
+            <h2 matListItemTitle>{{item.title}}</h2>
+            <div matListItemLine *ngIf="item.error">{{ 'MASTER_KEY_ERROR'| translate }}</div>
+            <div matListItemLine *ngIf="!item.error">{{ 'PASSWORD'| translate }}: {{ item.password! }}</div>
+            <button matListItemMeta *ngIf="!item.error" mat-stroked-button (click)="select(item)">{{ 'COPY'| translate }}</button>
         </mat-list-item>
     </mat-list>
 </div>

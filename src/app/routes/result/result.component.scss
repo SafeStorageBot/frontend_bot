@@ -8,3 +8,6 @@ section {
     max-height: 80%;
     overflow-y: scroll;
 }
+mat-list-item  button::before {
+  display: none !important;
+}
