@@ -26,7 +26,7 @@
                 <mat-selection-list #items (selectionChange)="OnSelectionChange(items.selectedOptions.selected)">
                     <h3 matSubheader>{{ 'LIST_INFO'| translate }} {{ resp.response && resp.response.length || 0}}/{{ userInfoReponse.response.until ? '9999999+' : userInfoReponse.response.limit}}</h3>
                     <h4 *ngIf="resp.response && resp.response.length == 0">{{ 'LIST_INFO_TIP'| translate }}</h4>
-                    <mat-list-option *ngFor="let item of resp.response" [value]="item">
+                    <mat-list-option *ngFor="let item of resp.response" [value]="item" disableRipple="true">
                         {{item.title}}
                     </mat-list-option>
                 </mat-selection-list>
