@@ -1,27 +1,43 @@
 # TelegramPasswords
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
+Frontend for [password_safe_bot](https://github.com/PxyUp/password_safe_bot) (SafeStorageBot) — a Telegram Mini App for storing AES-encrypted secrets.
+
+Built with Svelte 5 + Vite + TypeScript. No router, no UI framework: the whole
+initial payload is ~24 kB gzip. Styling follows the Telegram theme variables
+(`--tg-theme-*`), so light/dark mode is automatic.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+```bash
+npm install
+npm run dev
+```
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Serves at `http://localhost:5173/static/`. Requests to `/api/*` are proxied to
+the bot backend on `http://localhost:8080` (override with
+`API_TARGET=http://host:port npm run dev`).
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+npm run build
+```
 
-## Running unit tests
+Output goes to `dist/telegram_passwords`, which is embedded by the Go backend
+via `go:embed` (the backend repo includes this repo as the `ui` submodule) and
+served under `/static/`. The `dist` directory is committed for that reason —
+rebuild and commit it when releasing.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Type checking
 
-## Running end-to-end tests
+```bash
+npm run check
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Notes
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Secrets are encrypted client-side with crypto-js AES (OpenSSL EVP format).
+  Do not swap the crypto implementation: stored secrets must stay decryptable.
+- `telegram-web-app.js` is loaded from telegram.org as required by Telegram;
+  all access to `window.Telegram` is guarded so the app still works in a
+  plain browser (English, no BackButton/haptics).

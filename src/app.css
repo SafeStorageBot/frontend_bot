@@ -1,0 +1,240 @@
+:root {
+  --bg: var(--tg-theme-bg-color, #ffffff);
+  --bg-secondary: var(--tg-theme-secondary-bg-color, #f1f2f6);
+  --text: var(--tg-theme-text-color, #17212b);
+  --hint: var(--tg-theme-hint-color, #8b959e);
+  --link: var(--tg-theme-link-color, #2481cc);
+  --button: var(--tg-theme-button-color, #2481cc);
+  --button-text: var(--tg-theme-button-text-color, #ffffff);
+  --destructive: var(--tg-theme-destructive-text-color, #d14e4e);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior: none;
+}
+
+#app {
+  height: 100dvh;
+  height: var(--tg-viewport-stable-height, 100dvh);
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+/* Buttons */
+.btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 15px;
+  font-weight: 600;
+  background: var(--button);
+  color: var(--button-text);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.btn-stroked {
+  background: transparent;
+  color: var(--link);
+  border: 1px solid rgba(139, 149, 158, 0.4);
+  border-color: color-mix(in srgb, var(--hint) 40%, transparent);
+}
+
+.btn-danger {
+  background: transparent;
+  color: var(--destructive);
+  border: 1px solid rgba(209, 78, 78, 0.4);
+  border-color: color-mix(in srgb, var(--destructive) 40%, transparent);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actions .btn {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Form fields */
+.panel {
+  width: 100%;
+  max-width: 420px;
+  margin: 32px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-label {
+  font-size: 13px;
+  color: var(--hint);
+  padding-left: 4px;
+}
+
+.field {
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: var(--bg-secondary);
+  color: var(--text);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.field:focus {
+  border-color: var(--button);
+}
+
+.field-error {
+  color: var(--destructive);
+  font-size: 12px;
+  min-height: 18px;
+  padding-left: 4px;
+}
+
+.password-box {
+  position: relative;
+}
+
+.password-box .field {
+  padding-right: 46px;
+}
+
+.eye {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  color: var(--hint);
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* Misc */
+.center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 3px solid rgba(139, 149, 158, 0.3);
+  border-color: color-mix(in srgb, var(--hint) 30%, transparent);
+  border-top-color: var(--button);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.error-note {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.error-note h2 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.error-note p {
+  margin: 0;
+  color: var(--hint);
+}
+
+.hint {
+  color: var(--hint);
+}
+
+.toast {
+  position: fixed;
+  top: calc(12px + env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: calc(100% - 32px);
+  background: rgba(23, 33, 43, 0.9);
+  background: color-mix(in srgb, var(--text) 88%, transparent);
+  color: var(--bg);
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  z-index: 10;
+  animation: toast-in 0.2s ease-out;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}

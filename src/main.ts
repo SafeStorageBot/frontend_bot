@@ -1,12 +1,8 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { mount } from 'svelte';
+import './app.css';
+import App from './App.svelte';
+import { ready } from './lib/telegram';
 
-import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
+ready();
 
-if (environment.production) {
-  enableProdMode();
-}
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+export default mount(App, { target: document.getElementById('app')! });
